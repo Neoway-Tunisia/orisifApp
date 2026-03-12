@@ -72,7 +72,13 @@ export class CatalogComponent implements OnInit {
 
   filterByCategory(category: string) {
     this.selectedCategory = category;
+    this.isCategoryCollapsed = true; // Auto-collapse on mobile
     this.applyFilters();
+    
+    // Smooth scroll to top of product list on mobile
+    if (window.innerWidth < 992) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 
   onSearch() {

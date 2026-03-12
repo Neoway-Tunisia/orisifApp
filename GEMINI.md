@@ -37,20 +37,27 @@ Angular 19 migration of the "Karma" template for **Orisif**, a medical laborator
 ## 5. Supabase Integration & Security
 - **Service:** `SupabaseService` (`src/app/services/supabase.service.ts`).
 - **Data Source:** `products` table.
+- **Environment Management:** 
+  - `src/environments/environment.ts` is ignored by Git.
+  - `set-env.js` generates the environment file from system variables (`SUPABASE_URL`, `SUPABASE_KEY`).
+  - Securely integrated with Netlify Environment Variables.
 - **Security (Critical):** 
   - Uses **Row Level Security (RLS)**. 
   - `SELECT` is authorized for `anon` (public). 
-  - `INSERT/UPDATE/DELETE` are strictly restricted to authenticated roles or disabled for public keys.
-- **Image Strategy:** Public URLs from Supabase Storage are stored in the `images` array.
+  - `INSERT/UPDATE/DELETE` are strictly restricted.
 
-## 6. Critical Operational Notes
+## 6. Known Issues (To be resolved)
+- **Asset cleanup build errors**: Some references to deleted template images (`../img/elements/...`, `exclusive.jpg`, etc.) still exist in `src/assets/css/main.css`. These cause `Could not resolve` errors during `npm run build`. 
+- **Workaround**: These lines in `main.css` need to be manually removed or commented out.
+
+## 7. Critical Operational Notes
 - **Memory Management:** Always run Angular CLI with increased memory limit:
   ```bash
   node --max-old-space-size=1024 node_modules/@angular/cli/bin/ng serve
   ```
 - **Build Configuration:** Assets are mapped in `angular.json` from `src/assets` and `public`.
 
-## 7. Developer Guidelines
+## 8. Developer Guidelines
 - **No E-commerce:** Cart and Price features must remain disabled.
 - **Language:** All UI labels must be in French.
 - **Styling Standards:** 

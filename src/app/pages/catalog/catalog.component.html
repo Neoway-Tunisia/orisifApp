@@ -11,7 +11,7 @@
                     Catégories
                     <i class="fa d-md-none" [class.fa-plus]="isCategoryCollapsed" [class.fa-minus]="!isCategoryCollapsed"></i>
                 </div>
-                <ul class="main-categories d-md-block" [class.d-none]="isCategoryCollapsed">
+                <ul class="main-categories" [class.is-collapsed]="isCategoryCollapsed">
                     <li class="main-nav-list" *ngFor="let category of categories">
                         <a (click)="filterByCategory(category)" [class.active]="selectedCategory === category">
                             {{category}} <span class="number">({{category === 'Tout' ? products.length : getCategoryCount(category)}})</span>
