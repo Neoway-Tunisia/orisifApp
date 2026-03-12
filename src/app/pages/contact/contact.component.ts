@@ -20,18 +20,15 @@ export class ContactComponent {
   };
 
   onSubmit() {
-    // Netlify requires URL encoded form data
-    const formData = new URLSearchParams();
-    formData.append('form-name', 'contact');
-    formData.append('name', this.contactData.name);
-    formData.append('email', this.contactData.email);
-    formData.append('subject', this.contactData.subject);
-    formData.append('message', this.contactData.message);
+    const body = new URLSearchParams({
+      'form-name': 'contact',
+      ...this.contactData
+    }).toString();
 
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: formData.toString(),
+      body
     })
       .then(() => {
         alert('Merci pour votre message. Nous vous contacterons bientôt.');

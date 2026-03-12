@@ -9,5 +9,13 @@
 </head>
 <body>
   <app-root></app-root>
+
+  <!-- Static form for Netlify detection (SPAs) -->
+  <form name="contact" data-netlify="true" hidden>
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="text" name="subject" />
+    <textarea name="message"></textarea>
+  </form>
 </body>
 </html>
