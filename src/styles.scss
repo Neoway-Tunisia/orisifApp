@@ -1,0 +1,152 @@
+/* Global Styles */
+@import "assets/css/bootstrap.css";
+@import "assets/css/linearicons.css";
+@import "assets/css/font-awesome.min.css";
+@import "assets/css/themify-icons.css";
+@import "assets/css/owl.carousel.css";
+@import "assets/css/nice-select.css";
+@import "assets/css/nouislider.min.css";
+@import "assets/css/magnific-popup.css";
+@import "assets/css/main.css";
+
+/* Orisif Custom Branding */
+:root {
+    --primary-color: #01766E;
+    --bg-shade: #f4f4f4;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scroll issues */
+}
+
+.primary-btn {
+    background: var(--primary-color) !important;
+    border-radius: 25px !important;
+}
+
+.section_gap {
+    padding: 100px 0;
+}
+
+@media (max-width: 767px) {
+    .section_gap {
+        padding: 50px 0; /* Reduce gap on mobile */
+    }
+}
+
+.footer-area {
+    background-color: #222222;
+}
+
+/* Fix Bootstrap padding issue on mobile */
+@media (max-width: 575px) {
+    .container {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+    
+    .row {
+        margin-right: -5px;
+        margin-left: -5px;
+    }
+    
+    .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, 
+    .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, 
+    .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, 
+    .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, 
+    .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+        padding-right: 5px !important;
+        padding-left: 5px !important;
+    }
+}
+
+/* Hero Background styling */
+.banner-area, .organic-breadcrumb {
+    background: url('assets/img/backgroundOrisif.png') no-repeat center center/cover !important;
+    position: relative;
+    z-index: 1;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5) !important; /* Consistent 0.5 opacity overlay */
+        z-index: -1;
+        display: block !important; /* Force display on mobile */
+    }
+
+    .container {
+        position: relative;
+        z-index: 2;
+    }
+}
+
+.banner-area {
+    /* Special handling for home page fullscreen banner */
+}
+
+.fullscreen {
+    min-height: 800px;
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 767px) {
+    .fullscreen {
+        min-height: 500px; /* Reduce banner height on mobile */
+    }
+}
+
+.organic-breadcrumb {
+    margin-bottom: 0px !important;
+    padding-top: 130px; /* Space for the absolute header */
+}
+
+.breadcrumb-banner {
+    padding: 60px 0 60px 0 !important;
+    
+    h1 {
+        margin-bottom: 10px;
+    }
+}
+
+/* Reduced gap for sections following breadcrumbs */
+app-breadcrumbs + .section_gap,
+app-breadcrumbs + .product_image_area,
+app-breadcrumbs + .contact_area {
+    /* padding-top removed */
+}
+
+@media (max-width: 767px) {
+    app-breadcrumbs + .section_gap,
+    app-breadcrumbs + .product_image_area,
+    app-breadcrumbs + .contact_area {
+        padding-top: 30px !important;
+    }
+}
+
+/* Sidebar Styling */
+.sidebar-categories .head {
+    background: var(--bg-shade) !important;
+    color: #222 !important;
+}
+
+.sidebar-categories .main-categories {
+    padding-left: 0;
+}
+
+.sidebar-categories .main-nav-list a {
+    padding: 10px 20px;
+    display: block;
+    color: #777;
+    transition: all 0.3s ease;
+    
+    &.active, &:hover {
+        color: var(--primary-color);
+        background: var(--bg-shade);
+    }
+}

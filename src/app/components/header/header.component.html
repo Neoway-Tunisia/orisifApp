@@ -1,0 +1,33 @@
+<header class="header_area sticky-header" [class.is-sticky]="isSticky">
+    <div class="main_menu">
+        <nav class="navbar navbar-expand-lg navbar-light main_box">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <a class="navbar-brand logo_h" routerLink="/" (click)="isMenuCollapsed = true">
+                    <img src="assets/img/OrisifColor.png" alt="Orisif Color" class="color-logo" [style.display]="isSticky ? 'block' : 'none'">
+                    <img src="assets/img/OrisifWhite.png" alt="Orisif White" class="white-logo" [style.display]="!isSticky ? 'block' : 'none'">
+                </a>
+                <button class="navbar-toggler" type="button" (click)="toggleMenu()"
+                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse offset" id="navbarSupportedContent" [class.show]="!isMenuCollapsed">
+                    <ul class="nav navbar-nav menu_nav ml-auto">
+                        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                            <a class="nav-link" routerLink="/" (click)="isMenuCollapsed = true">Home</a>
+                        </li>
+                        <li class="nav-item" routerLinkActive="active">
+                            <a class="nav-link" routerLink="/catalogue" (click)="isMenuCollapsed = true">Catalogue</a>
+                        </li>
+                        <li class="nav-item" routerLinkActive="active">
+                            <a class="nav-link" routerLink="/contact" (click)="isMenuCollapsed = true">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>

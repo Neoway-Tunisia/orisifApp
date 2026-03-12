@@ -1,0 +1,54 @@
+.banner-area.organic-breadcrumb {
+    .breadcrumb-banner {
+        .col-first {
+            width: 100%;
+            max-width: 100%;
+            
+            h1 {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100%;
+            }
+            
+            nav {
+                display: flex;
+                align-items: center;
+                flex-wrap: nowrap; /* Force single line */
+                overflow: hidden;
+                width: 100%;
+                
+                a {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 300px; /* Limit individual link width */
+                    display: inline-block;
+                    flex-shrink: 1; /* Allow shrinking */
+                    
+                    &:last-child {
+                        flex-shrink: 2; /* Truncate last item (product name) first */
+                        max-width: none;
+                    }
+
+                    span {
+                        flex-shrink: 0; /* Don't hide arrows */
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Mobile specific truncation */
+@media (max-width: 767px) {
+    .banner-area.organic-breadcrumb .breadcrumb-banner .col-first {
+        nav a {
+            max-width: 120px; /* Even smaller limit on mobile */
+            
+            &:first-child {
+                max-width: 80px; /* "Accueil" doesn't need much space */
+            }
+        }
+    }
+}

@@ -1,0 +1,12 @@
+<div class="single-product" [routerLink]="['/produit', product.slug]" style="cursor: pointer;">
+    <div class="product-img">
+        <img class="img-fluid w-100" [src]="product.images && product.images.length > 0 ? product.images[0] : 'assets/img/product/p1.jpg'" [alt]="product.name">
+    </div>
+    <div class="product-details">
+        <h6>{{product.name}}</h6>
+        <div class="prd-bottom">
+            <a [routerLink]="['/produit', product.slug]" class="details-btn">Détails</a>
+            <a routerLink="/contact" (click)="$event.stopPropagation()" class="quote-btn">Devis</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+# Ignore heavy folders to save context
+/node_modules
+/.angular
+/dist
+/tmp
+
+# Ignore reference folder
+/OrisifWebsite
+
+# Ignore build logs
+npm-debug.log
+yarn-error.log
+
+# Ignore environment if sensitive (though our public keys are in environment.ts)
+# src/environments/environment.prod.ts

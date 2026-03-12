@@ -1,0 +1,55 @@
+<app-breadcrumbs 
+    title="Contactez-nous" 
+    [links]="[{label: 'Contact', url: '/contact'}]">
+</app-breadcrumbs>
+
+<!--================Contact Area =================-->
+<section class="contact_area section_gap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="contact_info">
+                    <div class="info_item">
+                        <i class="lnr lnr-home"></i>
+                        <h6>Tunisie</h6>
+                        <p>Orisif Medical Laboratory</p>
+                    </div>
+                    <div class="info_item">
+                        <i class="lnr lnr-phone-handset"></i>
+                        <h6><a href="tel:+21600000000">+216 -- --- ---</a></h6>
+                        <p>Lundi au Vendredi - 8h à 17h</p>
+                    </div>
+                    <div class="info_item">
+                        <i class="lnr lnr-envelope"></i>
+                        <h6><a href="mailto:info&#64;orisif.com">info&#64;orisif.com</a></h6>
+                        <p>Envoyez-nous votre demande !</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <form class="row contact_form" (ngSubmit)="onSubmit()" #contactForm="ngForm" novalidate="novalidate">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="contactData.name" placeholder="Votre Nom" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="contactData.email" placeholder="Votre Email" required email>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="subject" name="subject" [(ngModel)]="contactData.subject" placeholder="Sujet" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <textarea class="form-control" name="message" id="message" rows="5" [(ngModel)]="contactData.message" placeholder="Votre Message" required></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-right">
+                        <button type="submit" [disabled]="!contactForm.form.valid" class="primary-btn">Envoyer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================Contact Area =================-->

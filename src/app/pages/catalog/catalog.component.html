@@ -1,0 +1,74 @@
+<app-breadcrumbs 
+    title="Catalogue" 
+    [links]="[{label: 'Produits', url: '/catalogue'}]">
+</app-breadcrumbs>
+
+<div class="container section_gap">
+    <div class="row">
+        <div class="col-xl-3 col-lg-4 col-md-5">
+            <div class="sidebar-categories">
+                <div class="head d-flex justify-content-between align-items-center" (click)="isCategoryCollapsed = !isCategoryCollapsed">
+                    Catégories
+                    <i class="fa d-md-none" [class.fa-plus]="isCategoryCollapsed" [class.fa-minus]="!isCategoryCollapsed"></i>
+                </div>
+                <ul class="main-categories d-md-block" [class.d-none]="isCategoryCollapsed">
+                    <li class="main-nav-list" *ngFor="let category of categories">
+                        <a (click)="filterByCategory(category)" [class.active]="selectedCategory === category">
+                            {{category}} <span class="number">({{category === 'Tout' ? products.length : getCategoryCount(category)}})</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-xl-9 col-lg-8 col-md-7">
+            <!-- Start Filter Bar (Search Area) -->
+            <div class="filter-bar d-flex flex-wrap align-items-center mb-4">
+                <div class="search_input w-100 d-flex align-items-center">
+                    <input type="text" class="form-control" placeholder="Rechercher un produit..." 
+                           [(ngModel)]="searchTerm" (input)="onSearch()">
+                    <span class="lnr lnr-magnifier ml-2"></span>
+                </div>
+            </div>
+            <!-- End Filter Bar -->
+            
+            <!-- Start Product List -->
+            <section class="lattest-product-area pb-40 category-list">
+                <div class="row">
+                    <!-- single product -->
+                    <div class="col-6 col-md-6 col-lg-4 mb-3 d-flex align-items-stretch" *ngFor="let product of pagedProducts">
+                        <app-product-card [product]="product" class="w-100"></app-product-card>
+                    </div>
+                    
+                    <div class="col-12 text-center py-5" *ngIf="pagedProducts.length === 0">
+                        <div class="no-results">
+                            <span class="lnr lnr-warning" style="font-size: 48px; color: #ccc;"></span>
+                            <h4 class="mt-3">Aucun produit trouvé.</h4>
+                            <p>Essayez de modifier vos critères de recherche ou la catégorie.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- End Product List -->
+
+            <!-- Start Bottom Filter Bar (Functional Pagination) -->
+            <div class="filter-bar d-flex flex-wrap align-items-center" *ngIf="totalPages > 1">
+                <div class="pagination ml-auto">
+                    <a (click)="setPage(currentPage - 1)" class="prev-arrow" [class.disabled]="currentPage === 1">
+                        <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                    </a>
+                    
+                    <a *ngFor="let pageNum of getPagesArray()" 
+                       (click)="setPage(pageNum)" 
+                       [class.active]="pageNum === currentPage">
+                        {{pageNum}}
+                    </a>
+                    
+                    <a (click)="setPage(currentPage + 1)" class="next-arrow" [class.disabled]="currentPage === totalPages">
+                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- End Bottom Filter Bar -->
+        </div>
+    </div>
+</div>

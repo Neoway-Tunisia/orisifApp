@@ -1,0 +1,121 @@
+.header_area {
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+    transition: background 0.3s ease;
+
+    .main_box {
+        padding: 10px 0; /* Mobile padding */
+        transition: all 0.3s ease;
+
+        @media (min-width: 992px) {
+            padding: 50px 0; /* Desktop padding */
+        }
+    }
+
+    /* 1. Default Styles for Desktop (Transparent Header) */
+    @media (min-width: 992px) {
+        .navbar .nav .nav-item {
+            .nav-link {
+                color: #fff !important;
+                font-weight: 400;
+                transition: all 0.3s ease;
+                text-decoration: none;
+                position: relative;
+                padding-bottom: 5px;
+            }
+
+            &.active .nav-link {
+                font-weight: 700 !important;
+                text-decoration: underline !important;
+                text-underline-offset: 8px;
+                text-decoration-thickness: 2px !important;
+            }
+        }
+    }
+
+    /* 2. Sticky Styles (Both Desktop & Mobile) */
+    &.is-sticky {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #fff;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+        .main_box {
+            padding: 0 !important; /* Reduce padding when sticky */
+        }
+
+        .navbar .nav .nav-item {
+            .nav-link {
+                color: #222 !important;
+            }
+
+            &.active .nav-link {
+                color: var(--primary-color) !important;
+                font-weight: 700 !important;
+                text-decoration: underline !important;
+                text-underline-offset: 8px;
+                text-decoration-thickness: 2px !important;
+            }
+
+            &:hover .nav-link {
+                color: var(--primary-color) !important;
+            }
+        }
+    }
+
+    /* 3. Mobile Specific Overrides (Independent of Sticky State) */
+    @media (max-width: 991px) {
+        .navbar-collapse {
+            background: #fff !important;
+            padding: 0;
+            margin-top: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-top: 3px solid var(--primary-color);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        /* Force dark text for ALL mobile links */
+        .navbar .nav .nav-item .nav-link {
+            color: #222 !important;
+            padding: 15px 25px !important;
+            background: #fff !important;
+            border-bottom: 1px solid #f4f4f4;
+            text-decoration: none !important;
+            font-weight: 400 !important;
+            display: block;
+            width: 100%;
+
+            &:hover {
+                color: var(--primary-color) !important;
+                background: #fafafa !important;
+            }
+        }
+
+        /* Active link on mobile */
+        .navbar .nav .nav-item.active .nav-link {
+            color: var(--primary-color) !important;
+            font-weight: 700 !important;
+            background: #f9f9f9 !important;
+        }
+
+        .navbar-toggler {
+            border: none;
+            padding-right: 0;
+            
+            .icon-bar {
+                background: #fff; /* White bars on transparent background */
+            }
+        }
+
+        &.is-sticky .navbar-toggler .icon-bar {
+            background: #000; /* Black bars on sticky background */
+        }
+    }
+}
+
+.navbar-brand img {
+    max-width: 120px;
+}

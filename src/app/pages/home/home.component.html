@@ -1,0 +1,86 @@
+<!-- start banner Area -->
+<section class="banner-area">
+    <div class="container">
+        <div class="row fullscreen align-items-center justify-content-start">
+            <div class="col-lg-12">
+                <div class="row single-slide align-items-center d-flex">
+                    <div class="col-lg-8 col-md-10">
+                        <div class="banner-content">
+                            <h1 style="color: #fff;">Fournisseur de solutions et d'équipements de laboratoire en Tunisie.</h1>
+                            <p style="color: #fff;">Nous proposons une sélection d'équipements scientifiques européens certifiés, destinés aux laboratoires médicaux, de recherche et aux professionnels de santé.</p>
+                            <div class="add-bag d-flex align-items-center">
+                                <a class="primary-btn" routerLink="/contact">Contactez-nous</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+
+<!-- start product Area -->
+<section class="section_gap" *ngIf="featuredProducts.length > 0">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center">
+                <div class="section-title">
+                    <h1>Nos Produits</h1>
+                    <p>Une technologie européenne de pointe au service de votre précision.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <!-- single product -->
+            <div class="col-6 col-md-4 col-lg-3 mb-3" *ngFor="let product of featuredProducts.slice(0, 4)">
+                <app-product-card [product]="product"></app-product-card>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-50">
+            <a routerLink="/catalogue" class="primary-btn">Voir plus de produits</a>
+        </div>
+    </div>
+</section>
+<!-- end product Area -->
+
+<!-- Start Custom Product Section -->
+<section class="section_gap" style="background: #f4f4f4;">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-8 text-center">
+                <h1 class="mb-20"><b>Besoin de produit customisé ou spécifique ?</b></h1>
+                <p class="mb-30" style="margin-top: 20px; font-size: 15px;">Nos experts sont à votre disposition pour vous aider à trouver ou concevoir les équipements qui répondent précisément à vos besoins techniques.</p>
+                <a routerLink="/contact" class="primary-btn">Contactez-nous</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Custom Product Section -->
+
+<!-- Start About Us Area -->
+<section class="section_gap">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="about-content pr-50">
+                    <h1>À propos de nous</h1>
+                    <p>Orisif est une entreprise tunisienne spécialisée dans la distribution d'équipements de laboratoire de haute qualité. Nous nous engageons à fournir aux professionnels de la santé et aux chercheurs des solutions technologiques avancées provenant des meilleurs fabricants européens.</p>
+                    <p>Notre mission est d'accompagner l'évolution des laboratoires en Tunisie en offrant non seulement des équipements certifiés, mais aussi un support technique et un service après-vente irréprochable.</p>
+                    <ul class="list-unstyled mt-30">
+                        <li><i class="fa fa-check text-success mr-10"></i> Équipements certifiés CE</li>
+                        <li><i class="fa fa-check text-success mr-10"></i> Partenaires européens de confiance</li>
+                        <li><i class="fa fa-check text-success mr-10"></i> Support technique expert</li>
+                        <li><i class="fa fa-check text-success mr-10"></i> Service après-vente dédié</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-img">
+                    <img class="img-fluid w-100" src="assets/img/aproposnous.png" alt="Orisif Laboratory">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End About Us Area -->

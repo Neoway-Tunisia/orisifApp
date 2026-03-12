@@ -1,0 +1,17 @@
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-start">
+            <div class="col-first text-left">
+                <h1>{{title}}</h1>
+                <nav class="d-flex align-items-center justify-content-start">
+                    <a routerLink="/">Accueil<span class="lnr lnr-arrow-right"></span></a>
+                    <ng-container *ngFor="let link of links; let last = last">
+                        <a [routerLink]="link.url">{{link.label}}<span class="lnr lnr-arrow-right" *ngIf="!last"></span></a>
+                    </ng-container>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->

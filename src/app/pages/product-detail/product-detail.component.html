@@ -1,0 +1,104 @@
+<app-breadcrumbs 
+    [title]="product?.name || 'Détails du produit'" 
+    [links]="[{label: 'Produits', url: '/catalogue'}, {label: product?.name || '', url: '/produit/' + product?.slug}]">
+</app-breadcrumbs>
+
+<div class="product_image_area section_gap_top" *ngIf="product">
+    <div class="container">
+        <div class="row s_product_inner">
+            <!-- Details now on the LEFT -->
+            <div class="col-lg-5">
+                <div class="s_product_text">
+                    <h3>{{product.name}}</h3>
+                    <ul class="list">
+                        <li><a class="active" href="javascript:void(0)"><span>Catégorie</span> : {{product.category}}</a></li>
+                        <li *ngIf="product.specifications['Marque']"><a href="javascript:void(0)"><span>Marque</span> : {{product.specifications['Marque']}}</a></li>
+                    </ul>
+                    <p>
+                        {{ product.description.length > 250 ? (product.description | slice:0:250) + '...' : product.description }}
+                        <a href="javascript:void(0)" *ngIf="product.description.length > 250" 
+                           (click)="scrollToDescription()" 
+                           style="color: var(--primary-color); font-weight: 600; margin-left: 5px;">
+                           Lire la suite
+                        </a>
+                    </p>
+                    <div class="card_area d-flex align-items-center">
+                        <a class="primary-btn" routerLink="/contact">Demander un devis</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Images now on the RIGHT -->
+            <div class="col-lg-6 offset-lg-1">
+                <div class="s_Product_carousel">
+                    <div class="main-img-container mb-4" (click)="openLightbox(product.images.indexOf(selectedImage))">
+                        <img class="img-fluid w-100" [src]="selectedImage || (product.images && product.images.length > 0 ? product.images[0] : 'assets/img/product/p1.jpg')" [alt]="product.name">
+                        <div class="zoom-overlay">
+                            <i class="fa fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-wrap gap-3 justify-content-center">
+                        <div class="thumb-item" *ngFor="let image of product.images; let i = index" (click)="selectImage(image)" 
+                             [style.width]="'70px'" [style.height]="'70px'"
+                             [style.border]="selectedImage === image ? '2px solid var(--primary-color)' : '1px solid #eee'">
+                            <img [src]="image" class="img-fluid" alt="Product Thumbnail">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="product_description_area compact_area" *ngIf="product">
+    <div class="container">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link" [class.active]="activeTab === 'description'" (click)="setActiveTab('description')" 
+                   href="javascript:void(0)" role="tab">Description</a>
+            </li>
+            <li class="nav-item" *ngIf="specKeys.length > 0">
+                <a class="nav-link" [class.active]="activeTab === 'specifications'" (click)="setActiveTab('specifications')" 
+                   href="javascript:void(0)" role="tab">Spécifications</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade" [class.show]="activeTab === 'description'" [class.active]="activeTab === 'description'" 
+                 id="home" role="tabpanel">
+                <p>{{product.description}}</p>
+            </div>
+            <div class="tab-pane fade" [class.show]="activeTab === 'specifications'" [class.active]="activeTab === 'specifications'" 
+                 id="profile" role="tabpanel">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr *ngFor="let key of specKeys">
+                                <td><h5>{{key}}</h5></td>
+                                <td><h5>{{product.specifications[key]}}</h5></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div class="lightbox-overlay" *ngIf="isLightboxOpen && product" (click)="closeLightbox()">
+    <button class="close-btn" (click)="closeLightbox()">&times;</button>
+    
+    <div class="lightbox-content" (click)="$event.stopPropagation()">
+        <button class="nav-btn prev" (click)="prevImage($event)" *ngIf="product.images.length > 1">
+            <i class="fa fa-chevron-left"></i>
+        </button>
+        
+        <div class="image-wrapper">
+            <img [src]="product.images[lightboxIndex]" [alt]="product.name">
+            <div class="counter">{{lightboxIndex + 1}} / {{product.images.length}}</div>
+        </div>
+        
+        <button class="nav-btn next" (click)="nextImage($event)" *ngIf="product.images.length > 1">
+            <i class="fa fa-chevron-right"></i>
+        </button>
+    </div>
+</div>
