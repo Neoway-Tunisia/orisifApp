@@ -20,14 +20,31 @@ export class ContactComponent {
   };
 
   onSubmit() {
-    console.log('Form submitted:', this.contactData);
-    // Here you would typically send the data to a backend or service
-    alert('Merci pour votre message. Nous vous contacterons bientôt.');
-    this.contactData = {
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    };
+    // Netlify requires URL encoded form data
+    const formData = new URLSearchParams();
+    formData.append('form-name', 'contact');
+    formData.append('name', this.contactData.name);
+    formData.append('email', this.contactData.email);
+    formData.append('subject', this.contactData.subject);
+    formData.append('message', this.contactData.message);
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formData.toString(),
+    })
+      .then(() => {
+        alert('Merci pour votre message. Nous vous contacterons bientôt.');
+        this.contactData = {
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        };
+      })
+      .catch((error) => {
+        console.error('Netlify Form Error:', error);
+        alert('Une erreur est survenue. Veuillez réessayer plus tard.');
+      });
   }
 }

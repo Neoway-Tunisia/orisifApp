@@ -22,7 +22,17 @@
                 </div>
             </div>
             <div class="col-lg-8">
-                <form class="row contact_form" (ngSubmit)="onSubmit()" #contactForm="ngForm" novalidate="novalidate">
+                <!-- Added data-netlify="true" and name="contact" for Netlify detection -->
+                <form class="row contact_form" 
+                      name="contact" 
+                      method="POST" 
+                      data-netlify="true"
+                      (ngSubmit)="onSubmit()" 
+                      #contactForm="ngForm">
+                    
+                    <!-- Hidden field required for Netlify with Angular/SPAs -->
+                    <input type="hidden" name="form-name" value="contact">
+
                     <div class="col-md-6">
                         <div class="form-group">
                             <input type="text" class="form-control" id="name" name="name" [(ngModel)]="contactData.name" placeholder="Votre Nom" required>
