@@ -21,7 +21,7 @@
 <!-- End banner Area -->
 
 <!-- start product Area -->
-<section class="section_gap" *ngIf="featuredProducts.length > 0">
+<section class="section_gap">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-6 text-center">
@@ -31,13 +31,23 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center">
+        
+        <!-- Skeleton Loading Grid -->
+        <div class="row justify-content-center" *ngIf="isLoading">
+            <div class="col-6 col-md-4 col-lg-3 mb-3" *ngFor="let item of [1,2,3,4]">
+                <app-product-card [isLoading]="true"></app-product-card>
+            </div>
+        </div>
+
+        <!-- Real Products Grid -->
+        <div class="row justify-content-center" *ngIf="!isLoading && featuredProducts.length > 0">
             <!-- single product -->
             <div class="col-6 col-md-4 col-lg-3 mb-3" *ngFor="let product of featuredProducts.slice(0, 4)">
                 <app-product-card [product]="product"></app-product-card>
             </div>
         </div>
-        <div class="row justify-content-center mt-50">
+        
+        <div class="row justify-content-center mt-50" *ngIf="!isLoading">
             <a routerLink="/catalogue" class="primary-btn">Voir plus de produits</a>
         </div>
     </div>

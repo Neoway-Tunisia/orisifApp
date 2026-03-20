@@ -15,12 +15,13 @@ Angular 19 migration of the "Karma" template for **Orisif**, a medical laborator
 ## 3. Tech Stack
 - **Framework:** Angular 19 (Standalone components).
 - **Backend:** Supabase (Auth/Database/Storage).
+- **Forms**: Netlify Forms (Integrated for SPAs).
 - **Styling:** Global `styles.scss` with specific component-level overrides for modern UI.
 
 ## 4. UI/UX Features & Component Logic
 - **Header**: 
   - Dynamic sticky behavior (transparent to white).
-  - Mobile menu with dark text visibility fixes and collapsible functionality.
+  - Mobile menu with dark text visibility fixes and smooth collapsible functionality.
 - **Product Cards**:
   - **Grid**: 4 items/row on Desktop, 2 items/row on Mobile (`col-6`).
   - **Design**: Sharp corners (`border-radius: 0`), full-bleed images (`object-fit: cover`), and modern "pop-up" hover effects.
@@ -30,9 +31,10 @@ Angular 19 migration of the "Karma" template for **Orisif**, a medical laborator
   - **Gallery**: Professional lightbox slideshow with full-screen navigation and counter.
   - **Description**: Truncated top description with smooth-scroll "Lire la suite" link.
 - **Catalog**:
-  - **Sidebar**: Collapsible "Catégories" toggle on mobile.
+  - **Sidebar**: Smooth animated "Catégories" toggle on mobile. Auto-collapses on selection.
   - **Search**: Functional real-time search filtering.
   - **Pagination**: Dynamic bottom pagination (9 items/page).
+- **Navigation**: Automatic scroll-to-top enabled on all route changes.
 
 ## 5. Supabase Integration & Security
 - **Service:** `SupabaseService` (`src/app/services/supabase.service.ts`).
@@ -46,21 +48,35 @@ Angular 19 migration of the "Karma" template for **Orisif**, a medical laborator
   - `SELECT` is authorized for `anon` (public). 
   - `INSERT/UPDATE/DELETE` are strictly restricted.
 
-## 6. Known Issues (To be resolved)
-- **Asset cleanup build errors**: Some references to deleted template images (`../img/elements/...`, `exclusive.jpg`, etc.) still exist in `src/assets/css/main.css`. These cause `Could not resolve` errors during `npm run build`. 
-- **Workaround**: These lines in `main.css` need to be manually removed or commented out.
+## 6. Roadmap: SEO & Visibility (To be implemented)
+### 6.1. Technical SEO
+- [ ] **Angular SSR (Server-Side Rendering):** Enable hydration to allow search engines to index dynamic product content.
+- [ ] **Sitemap.xml:** Generate a dynamic map of all product URLs.
+- [ ] **Robots.txt:** Configure crawling rules.
 
-## 7. Critical Operational Notes
+### 6.2. Metadata & Sharing
+- [ ] **Dynamic Titles/Meta-tags:** Inject unique titles and descriptions for each product (e.g., "Iosan Tunisie", "Micropipette").
+- [ ] **Open Graph (OG):** Configure preview images and titles for professional sharing on LinkedIn/WhatsApp.
+- [ ] **Favicons:** Add all standard formats (Apple touch, Android, etc.).
+
+### 6.3. Content Keywords
+- Target keywords: `Equipement de laboratoire tunisie`, `Iosan tunisie`, `micro pipette tunisie`, `fournisseur scientifique tunisie`.
+
+## 7. Known Issues
+- **Asset cleanup build errors**: References to deleted template images in `main.css` have been commented out to ensure build success.
+
+## 8. Critical Operational Notes
 - **Memory Management:** Always run Angular CLI with increased memory limit:
   ```bash
   node --max-old-space-size=1024 node_modules/@angular/cli/bin/ng serve
   ```
 - **Build Configuration:** Assets are mapped in `angular.json` from `src/assets` and `public`.
 
-## 8. Developer Guidelines
+## 9. Developer Guidelines
 - **No E-commerce:** Cart and Price features must remain disabled.
 - **Language:** All UI labels must be in French.
 - **Styling Standards:** 
   - Maintain sharp corners for containers/cards.
   - Buttons should use pill shapes (`border-radius: 25px`).
   - Standardize 50% overlay for all hero banners.
+  - Breadcrumbs must always stay on a single line (truncated with ellipsis).

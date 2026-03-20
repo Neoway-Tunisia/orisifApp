@@ -12,4 +12,5 @@ import { Product } from '../../services/supabase.service';
 })
 export class ProductCardComponent {
   @Input() product!: Product;
+  @Input() isLoading: boolean = false;
 }

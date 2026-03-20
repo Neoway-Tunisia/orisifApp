@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SupabaseService, Product } from '../../services/supabase.service';
+import { SeoService } from '../../services/seo.service';
 import { BreadcrumbsComponent } from '../../components/breadcrumbs/breadcrumbs.component';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 
@@ -20,6 +21,7 @@ export class CatalogComponent implements OnInit {
   categories: string[] = ['Tout'];
   selectedCategory: string = 'Tout';
   isCategoryCollapsed: boolean = true;
+  isLoading: boolean = true;
   
   // Search and Pagination
   searchTerm: string = '';
@@ -27,9 +29,19 @@ export class CatalogComponent implements OnInit {
   pageSize: number = 9;
   totalPages: number = 1;
 
-  constructor(private supabaseService: SupabaseService) {}
+  constructor(
+    private supabaseService: SupabaseService,
+    private seoService: SeoService
+  ) {}
 
   async ngOnInit() {
+    this.seoService.updateTags(
+      "Orisif - Fournisseur de solutions et d'équipements de laboratoire en Tunisie",
+      "Découvrez notre catalogue complet d'équipements de laboratoire : Biosan, micropipettes, et solutions de haute technologie pour votre laboratoire.",
+      "assets/img/backgroundOrisif.png",
+      "https://orisif.com/catalogue"
+    );
+    this.isLoading = true;
     try {
       this.products = await this.supabaseService.getProducts();
       this.filteredProducts = this.products;
@@ -40,6 +52,8 @@ export class CatalogComponent implements OnInit {
       this.applyFilters();
     } catch (error) {
       console.error('Error fetching products:', error);
+    } finally {
+      this.isLoading = false;
     }
   }
 

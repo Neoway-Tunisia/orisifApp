@@ -7,6 +7,7 @@ export interface Product {
   name: string;
   slug: string;
   category: string;
+  marques?: string;
   description: string;
   images: string[];
   specifications: { [key: string]: string };
@@ -21,7 +22,13 @@ export class SupabaseService {
   private supabase: SupabaseClient;
 
   constructor() {
-    this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey);
+    this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey, {
+      auth: {
+        persistSession: false, // Pas besoin de persister la session pour un catalogue public
+        autoRefreshToken: false,
+        detectSessionInUrl: false
+      }
+    });
   }
 
   async getProducts() {

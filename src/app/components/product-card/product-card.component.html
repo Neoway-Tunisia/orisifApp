@@ -1,12 +1,28 @@
-<div class="single-product" [routerLink]="['/produit', product.slug]" style="cursor: pointer;">
-    <div class="product-img">
-        <img class="img-fluid w-100" [src]="product.images && product.images.length > 0 ? product.images[0] : 'assets/img/product/p1.jpg'" [alt]="product.name">
-    </div>
+<!-- Loading State -->
+<div class="single-product" *ngIf="isLoading">
+    <div class="skeleton-box skeleton-img"></div>
     <div class="product-details">
-        <h6>{{product.name}}</h6>
+        <div class="skeleton-box skeleton-title"></div>
+        <div class="skeleton-btn-container">
+            <div class="skeleton-box skeleton-btn"></div>
+            <div class="skeleton-box skeleton-btn"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Real Content -->
+<div class="single-product" *ngIf="!isLoading && product">
+    <a [routerLink]="['/produit', product.slug]" class="product-img">
+        <img [src]="product.images && product.images.length > 0 ? product.images[0] : 'assets/img/product/p1.jpg'" [alt]="product.name">
+    </a>
+    <div class="product-details">
+        <a [routerLink]="['/produit', product.slug]">
+            <h6>{{product.name}}</h6>
+            <div class="product-brand" *ngIf="product.marques">{{product.marques}}</div>
+        </a>
         <div class="prd-bottom">
             <a [routerLink]="['/produit', product.slug]" class="details-btn">Détails</a>
-            <a routerLink="/contact" (click)="$event.stopPropagation()" class="quote-btn">Devis</a>
+            <a routerLink="/contact" class="quote-btn">Devis</a>
         </div>
     </div>
 </div>

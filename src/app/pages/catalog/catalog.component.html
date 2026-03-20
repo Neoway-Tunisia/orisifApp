@@ -33,7 +33,15 @@
             
             <!-- Start Product List -->
             <section class="lattest-product-area pb-40 category-list">
-                <div class="row">
+                <!-- Skeleton Grid -->
+                <div class="row" *ngIf="isLoading">
+                    <div class="col-6 col-md-6 col-lg-4 mb-3 d-flex align-items-stretch" *ngFor="let item of [1,2,3,4,5,6]">
+                        <app-product-card [isLoading]="true" class="w-100"></app-product-card>
+                    </div>
+                </div>
+
+                <!-- Real Content Grid -->
+                <div class="row" *ngIf="!isLoading">
                     <!-- single product -->
                     <div class="col-6 col-md-6 col-lg-4 mb-3 d-flex align-items-stretch" *ngFor="let product of pagedProducts">
                         <app-product-card [product]="product" class="w-100"></app-product-card>

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { SeoService } from '../../services/seo.service';
 import { BreadcrumbsComponent } from '../../components/breadcrumbs/breadcrumbs.component';
 
 @Component({
@@ -11,13 +12,24 @@ import { BreadcrumbsComponent } from '../../components/breadcrumbs/breadcrumbs.c
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit {
   contactData = {
     name: '',
     email: '',
     subject: '',
     message: ''
   };
+
+  constructor(private seoService: SeoService) {}
+
+  ngOnInit() {
+    this.seoService.updateTags(
+      "Orisif - Fournisseur de solutions et d'équipements de laboratoire en Tunisie",
+      "Une question ? Un devis ? Contactez l'équipe Orisif pour vos besoins en équipements de laboratoire en Tunisie.",
+      "assets/img/backgroundOrisif.png",
+      "https://orisif.com/contact"
+    );
+  }
 
   onSubmit() {
     const body = new URLSearchParams({

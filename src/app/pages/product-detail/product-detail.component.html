@@ -1,7 +1,42 @@
 <app-breadcrumbs 
-    [title]="product?.name || 'Détails du produit'" 
-    [links]="[{label: 'Produits', url: '/catalogue'}, {label: product?.name || '', url: '/produit/' + product?.slug}]">
+    [title]="product?.name || 'Chargement...'" 
+    [links]="[{label: 'Produits', url: '/catalogue'}, {label: product?.name || '...', url: '/produit/' + product?.slug}]">
 </app-breadcrumbs>
+
+<!-- Skeleton Loading State -->
+<div class="product_image_area section_gap_top" *ngIf="!product">
+    <div class="container">
+        <div class="row s_product_inner">
+            <div class="col-lg-5">
+                <div class="s_product_text">
+                    <div class="skeleton-box skeleton-title"></div>
+                    <div class="list">
+                        <div class="skeleton-box skeleton-text medium mb-3"></div>
+                        <div class="skeleton-box skeleton-text short"></div>
+                    </div>
+                    <div class="mt-4">
+                        <div class="skeleton-box skeleton-text"></div>
+                        <div class="skeleton-box skeleton-text"></div>
+                        <div class="skeleton-box skeleton-text short"></div>
+                    </div>
+                    <div class="card_area d-flex align-items-center">
+                        <div class="skeleton-box skeleton-btn"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 offset-lg-1">
+                <div class="s_Product_carousel">
+                    <div class="skeleton-box skeleton-img"></div>
+                    <div class="d-flex flex-wrap gap-3 justify-content-center">
+                        <div class="skeleton-box skeleton-thumb"></div>
+                        <div class="skeleton-box skeleton-thumb"></div>
+                        <div class="skeleton-box skeleton-thumb"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="product_image_area section_gap_top" *ngIf="product">
     <div class="container">
@@ -12,7 +47,7 @@
                     <h3>{{product.name}}</h3>
                     <ul class="list">
                         <li><a class="active" href="javascript:void(0)"><span>Catégorie</span> : {{product.category}}</a></li>
-                        <li *ngIf="product.specifications['Marque']"><a href="javascript:void(0)"><span>Marque</span> : {{product.specifications['Marque']}}</a></li>
+                        <li *ngIf="product.marques"><a class="active" href="javascript:void(0)"><span>Marque</span> : {{product.marques}}</a></li>
                     </ul>
                     <p>
                         {{ product.description.length > 250 ? (product.description | slice:0:250) + '...' : product.description }}

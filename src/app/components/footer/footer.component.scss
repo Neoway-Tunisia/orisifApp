@@ -1,0 +1,13 @@
+.footer-tags {
+    span {
+        font-size: 13px;
+        color: #555;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        cursor: default;
+
+        &:hover {
+            color: var(--primary-color);
+        }
+    }
+}
