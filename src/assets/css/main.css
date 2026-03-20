@@ -1245,7 +1245,7 @@ h1, h2, h3, h4, h5, h6 {
 /* banner area css
 ============================================================================================ */
 .banner-area {
-  background: url(../img/backgroundOrisif.png) center no-repeat;
+  background: url(../img/backgroundOrisif.webp) center no-repeat;
   background-size: cover;
   position: relative; }
   .banner-area::before {
@@ -1333,7 +1333,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #222222; }
 
 .organic-breadcrumb {
-  background: url(../img/backgroundOrisif.png) center no-repeat;
+  background: url(../img/backgroundOrisif.webp) center no-repeat;
   background-size: cover;
   padding-top: 130px;
   position: relative; }

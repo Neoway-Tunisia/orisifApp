@@ -6,8 +6,8 @@ import { Title, Meta } from '@angular/platform-browser';
 })
 export class SeoService {
   private readonly defaultTitle = "Orisif - Fournisseur de solutions et d'équipements de laboratoire en Tunisie";
-  private readonly defaultDescription = "Orisif est votre partenaire de confiance en Tunisie pour l'acquisition d'équipements de laboratoire européens de haute technologie. Secteurs médical, recherche et industriel.";
-  private readonly defaultImage = "assets/img/backgroundOrisif.png";
+  private readonly defaultDescription = "Nous proposons une sélection d'équipements scientifiques européens certifiés, destinés aux laboratoires médicaux, de recherche et aux professionnels de santé.";
+  private readonly defaultImage = "assets/img/backgroundOrisif.webp";
   private readonly defaultUrl = "https://orisif.com/";
   private readonly defaultKeywords = "Biosan Tunisie, Equipement de laboratoire tunisie, micro pipette tunisie, fournisseur scientifique tunisie, médical, recherche, industrie";
 
